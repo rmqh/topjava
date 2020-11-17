@@ -11,19 +11,20 @@
 
 <h3><a href="index.html">Home</a></h3>
 <h2>Meals</h2>
+<p><a href="?action=add">Add</a></p>
 <table border="1">
     <tr>
         <th>Date</th>
         <th>Description</th>
         <th>Calories</th>
-        <th>Excees</th>
     </tr>
     <c:forEach var="mealWithExcess" items="${mealWithExcessList}">
         <tr style="color: ${mealWithExcess.excess == true ? "red" : "green"};">
             <td>${fn:replace(mealWithExcess.dateTime, "T", " ")   }</td>
             <td>${mealWithExcess.description}</td>
             <td>${mealWithExcess.calories}</td>
-            <td>${mealWithExcess.excess}</td>
+            <td><a href="?action=update&mealId=<c:out value="${mealWithExcess.id}"/>">Update</a></td>
+            <td><a href="?action=delete&mealId=<c:out value="${mealWithExcess.id}"/>">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
