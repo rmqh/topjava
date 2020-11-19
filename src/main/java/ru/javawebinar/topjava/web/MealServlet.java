@@ -43,17 +43,19 @@ public class MealServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
 
-        // list meals after filtering
         if (action != null) {
+            // list meals after filtering
+
             switch (action) {
                 case "filter":
-                    String dateFrom = request.getParameter("dateFrom");
-                    String dateTo = request.getParameter("dateTo");
-                    String timeFrom = request.getParameter("timeFrom");
-                    String timeTo = request.getParameter("timeTo");
+                    String dateFrom = request.getParameter("dateFrom") != null ? request.getParameter("dateFrom") : "";
+                    String dateTo = request.getParameter("dateTo") != null ? request.getParameter("dateTo") : "";
+                    String timeFrom = request.getParameter("timeFrom") != null ? request.getParameter("timeFrom") : "";
+                    String timeTo = request.getParameter("timeTo") != null ? request.getParameter("timeTo") : "";
 
                     request.setAttribute("meals",
                             controller.getByDateAndTimeWithExcess(dateFrom, dateTo, timeFrom, timeTo));
+
                     request.setAttribute("dateFrom", dateFrom);
                     request.setAttribute("dateTo", dateTo);
                     request.setAttribute("timeFrom", timeFrom);
@@ -64,8 +66,9 @@ public class MealServlet extends HttpServlet {
                 default:
                     throw new RuntimeException("Unrecognized action parameter provided.");
             }
-            // add/update meal
         } else {
+            // add or update meal
+
             String mealId = request.getParameter(MEAL_ID);
 
             Meal meal = new Meal(mealId.isEmpty() ? null : Integer.valueOf(mealId),

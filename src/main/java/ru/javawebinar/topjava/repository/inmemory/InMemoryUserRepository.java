@@ -25,9 +25,9 @@ public class InMemoryUserRepository implements UserRepository {
         Set<Role> set2 = new HashSet<>(set1);
         set2.add(Role.ADMIN);
 
-        User userA = new User(10, "user", "t1@t.tt", "1", 2000, true, set1);
-        User userB = new User(11, "user", "t2@t.tt", "2", 2100, false, Collections.emptySet());
-        User userC = new User(12, "admin", "t3@t.tt", "3", 2200, true, set2);
+        User userA = new User(1, "user", "t1@t.tt", "1", 2000, true, set1);
+        User userB = new User(2, "user", "t2@t.tt", "2", 2100, false, Collections.emptySet());
+        User userC = new User(3, "admin", "t3@t.tt", "3", 2200, true, set2);
 
         save(userA);
         save(userB);
